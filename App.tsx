@@ -11,40 +11,14 @@ import {
 } from 'lucide-react';
 
 const TopBar: React.FC = () => (
-  <div className="fixed top-0 left-0 w-full z-50 px-4 py-3">
-    <div className="max-w-4xl mx-auto glass-card rounded-full px-6 py-2 flex items-center justify-center gap-3 border border-ouro-smart/20 shadow-lg animate-fade-up">
-      <CheckCircle2 size={14} className="text-ouro-smart" />
-      <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-sans text-nevoa-offwhite font-light text-center">
-        Parabéns por priorizar a excelência e o próximo nível da sua clínica.
+  <div className="fixed top-0 left-0 w-full z-50 px-4 py-6 pointer-events-none">
+    <div className="max-w-2xl mx-auto luxury-glass rounded-full px-8 py-3 flex items-center justify-center gap-3 luxury-shadow border border-white/60 pointer-events-auto animate-fade-up">
+      <CheckCircle2 size={16} className="text-luxury-gold" />
+      <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-sans text-luxury-text font-bold text-center">
+        Aplicação Recebida com Sucesso.
       </span>
     </div>
   </div>
-);
-
-const SectionHeader: React.FC<{ 
-  title: string; 
-  subtitle: string; 
-  userName?: string 
-}> = ({ title, subtitle, userName }) => (
-  <header className="max-w-3xl mx-auto text-center px-6 pt-32 pb-16 animate-fade-up">
-    <div className="flex flex-col items-center mb-12">
-      <div className="w-px h-16 bg-gradient-to-b from-transparent via-ouro-smart to-transparent opacity-30"></div>
-      <Sparkles className="mt-6 text-ouro-smart/40 animate-pulse-soft" size={20} />
-    </div>
-    <h1 className="font-serif text-4xl md:text-6xl mb-10 tracking-tight leading-tight">
-      <span className="block text-duna-bege text-[10px] font-sans uppercase tracking-[0.6em] mb-8 opacity-60">
-        Status da Aplicação
-      </span>
-      <span className="font-light">
-        {userName ? `Olá, ${userName}.` : 'Bem-vinda.'}
-      </span>
-      <br />
-      <span className="gold-gradient-text italic font-normal block mt-2">Sua análise iniciou.</span>
-    </h1>
-    <p className="font-sans text-duna-bege text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light opacity-70">
-      {subtitle}
-    </p>
-  </header>
 );
 
 const StepCard: React.FC<{ 
@@ -54,21 +28,21 @@ const StepCard: React.FC<{
   delay: string;
 }> = ({ icon, title, description, delay }) => (
   <div 
-    className={`glass-card relative flex flex-col items-center p-12 rounded-[3rem] transition-all duration-700 group hover:-translate-y-3 animate-fade-up`}
+    className="luxury-glass relative flex flex-col items-center p-12 rounded-[3.5rem] transition-all duration-700 group hover:-translate-y-2 hover:bg-white/70 luxury-shadow animate-fade-up"
     style={{ animationDelay: delay }}
   >
-    <div className="mb-10 p-5 rounded-full bg-ouro-smart/5 text-ouro-smart/70 group-hover:text-ouro-smart transition-all duration-500 group-hover:bg-ouro-smart/10">
+    <div className="mb-8 p-6 rounded-full bg-luxury-gold/5 text-luxury-gold transition-all duration-500 group-hover:scale-110 group-hover:bg-luxury-gold/10">
       {icon}
     </div>
-    <h3 className="font-serif text-2xl text-nevoa-offwhite mb-5 font-light tracking-wide">{title}</h3>
-    <p className="font-sans text-duna-bege text-center text-sm leading-relaxed font-light opacity-60 max-w-[220px]">
+    <h3 className="font-serif text-2xl text-luxury-text mb-4 font-bold tracking-tight">{title}</h3>
+    <p className="font-sans text-luxury-text/60 text-center text-sm leading-relaxed font-semibold max-w-[220px]">
       {description}
     </p>
   </div>
 );
 
 const App: React.FC = () => {
-  const [userName, setUserName] = useState<string>('Doutora');
+  const [userName, setUserName] = useState<string>('');
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -77,59 +51,74 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen font-sans selection:bg-ouro-smart/20">
+    <div className="min-h-screen font-sans selection:bg-luxury-gold/20 selection:text-luxury-gold">
       <TopBar />
 
-      {/* Dynamic Background Effects */}
-      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="blob top-[-10%] left-[-10%] animate-float"></div>
-        <div className="blob bottom-[10%] right-[-5%] animate-float" style={{ animationDelay: '-3s' }}></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,_rgba(200,161,120,0.03)_0%,_transparent_60%)]"></div>
+      {/* Subtle Background Elements */}
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden bg-luxury-bg">
+        <div className="blob-light top-[-15%] right-[-10%] animate-float"></div>
+        <div className="blob-light bottom-[5%] left-[-15%] animate-float" style={{ animationDelay: '-4s' }}></div>
       </div>
 
-      <main className="container mx-auto max-w-7xl px-4">
-        {/* Lighter Header */}
-        <SectionHeader 
-          userName={userName}
-          title="O Próximo Passo"
-          subtitle="Recebemos suas informações com sucesso. Nossa equipe iniciou uma análise de viabilidade individualizada para mapear o potencial de escala da sua clínica."
-        />
+      <main className="container mx-auto max-w-7xl px-6">
+        {/* Header Section */}
+        <header className="max-w-3xl mx-auto text-center pt-40 pb-20 animate-fade-up">
+          <div className="flex flex-col items-center mb-10">
+            <Sparkles className="text-luxury-gold/50 animate-pulse-soft" size={24} />
+          </div>
+          <h1 className="font-serif text-4xl md:text-6xl mb-10 tracking-tight leading-tight text-luxury-text">
+            <span className="block text-luxury-gold text-[10px] font-sans uppercase tracking-[0.6em] mb-6 font-bold">
+              O início da sua transformação
+            </span>
+            {userName ? (
+              <span className="font-light block mb-2">Seja bem-vinda, {userName}.</span>
+            ) : (
+              <span className="font-light block mb-2">Aplicação Recebida.</span>
+            )}
+            <span className="gold-gradient-text italic font-medium">Análise de Perfil Iniciada.</span>
+          </h1>
+          <p className="font-sans text-luxury-text/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-semibold opacity-90">
+            Recebemos seus dados. Agora, nossa banca estratégica iniciará a avaliação técnica para confirmar o potencial de escala da sua operação.
+          </p>
+        </header>
 
-        {/* Rounded Glass Grid */}
-        <section className="px-6 mb-32">
+        {/* Steps Grid */}
+        <section className="mb-32">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               <StepCard 
-                icon={<Search size={28} strokeWidth={1} />}
-                title="Sincronia"
-                description="Revisamos seus gargalos para garantir que nossa metodologia é a peça que falta na sua gestão."
+                icon={<Search size={32} strokeWidth={1.5} />}
+                title="Curadoria"
+                description="Validamos seus números para assegurar que nossa mentoria é o catalisador que você precisa hoje."
                 delay="0.2s"
               />
               <StepCard 
-                icon={<MessageSquare size={28} strokeWidth={1} />}
+                icon={<MessageSquare size={32} strokeWidth={1.5} />}
                 title="Seleção"
-                description="Caso sua clínica esteja no momento ideal, você receberá um contato direto da nossa assessoria técnica."
+                description="Se houver sinergia, entraremos em contato via WhatsApp para formalizar seu convite individual."
                 delay="0.4s"
               />
               <StepCard 
-                icon={<Calendar size={28} strokeWidth={1} />}
-                title="Estratégia"
-                description="O agendamento será o ponto de partida para a consolidação de um novo teto de faturamento."
+                icon={<Calendar size={32} strokeWidth={1.5} />}
+                title="Conselho"
+                description="O encontro estratégico definirá a rota precisa para consolidar seu novo teto de faturamento."
                 delay="0.6s"
               />
             </div>
           </div>
         </section>
 
-        {/* Minimalist CTA Section */}
-        <section className="px-6 max-w-4xl mx-auto text-center pb-24">
-          <div className="py-24 rounded-[4rem] bg-gradient-to-b from-ouro-smart/[0.03] to-transparent border border-ouro-smart/10">
-            <h2 className="font-serif text-3xl md:text-4xl text-nevoa-offwhite mb-8 font-light tracking-tight">
-              Acompanhe a <span className="italic opacity-80">Evolução.</span>
+        {/* CTA Section */}
+        <section className="max-w-4xl mx-auto text-center pb-32">
+          <div className="py-24 px-8 rounded-[4.5rem] bg-white/80 luxury-shadow border border-luxury-gold/10 relative overflow-hidden group">
+            <div className="absolute bottom-0 right-0 w-80 h-80 bg-luxury-gold/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/2"></div>
+            
+            <h2 className="font-serif text-3xl md:text-4xl text-luxury-text mb-8 font-bold tracking-tight">
+              Acompanhe a <span className="italic gold-gradient-text">Evolução.</span>
             </h2>
             
-            <p className="font-sans text-duna-bege mb-14 text-base md:text-lg leading-relaxed font-light opacity-60 max-w-2xl mx-auto px-4">
-              Enquanto aguarda nossa análise, observe os bastidores de estratégias que transformam clínicas em ativos de alto valor.
+            <p className="font-sans text-luxury-text/60 mb-14 text-base md:text-lg leading-relaxed font-semibold max-w-2xl mx-auto">
+              Enquanto aguarda nosso retorno, conheça os bastidores reais de clínicas que já transformaram gestão em liberdade geográfica e financeira.
             </p>
 
             <div className="flex flex-col items-center gap-10">
@@ -137,25 +126,27 @@ const App: React.FC = () => {
                 href="https://www.instagram.com/stories/drabrunamello.bm/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center px-16 py-6 rounded-full border border-ouro-smart/40 text-ouro-smart font-medium tracking-[0.25em] uppercase text-[10px] transition-all duration-700 hover:bg-ouro-smart hover:text-terra-profundo hover:px-20 overflow-hidden"
+                className="group relative inline-flex items-center justify-center px-20 py-6 rounded-full bg-luxury-gold text-white font-bold tracking-[0.25em] uppercase text-[11px] transition-all duration-500 hover:scale-105 hover:bg-luxury-text shadow-2xl"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                <span className="relative">Acessar Ecossistema</span>
-                <Instagram className="ml-4 opacity-50 group-hover:opacity-100 group-hover:rotate-12 transition-all" size={16} />
+                <span className="relative z-10">Ver Bastidores Atuais</span>
+                <Instagram className="ml-4 relative z-10 group-hover:rotate-12 transition-transform" size={18} />
+                <div className="absolute inset-0 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
+                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                </div>
               </a>
 
-              <div className="flex items-center text-duna-bege/20 gap-3 border-t border-ouro-smart/5 pt-10 w-full max-w-xs justify-center">
-                <ShieldCheck size={14} />
-                <span className="text-[9px] uppercase tracking-[0.3em]">Ambiente Individualizado</span>
+              <div className="flex items-center text-luxury-text/20 gap-3 border-t border-luxury-gold/5 pt-10 w-full max-w-xs justify-center">
+                <ShieldCheck size={16} />
+                <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Acesso Privado e Seguro</span>
               </div>
             </div>
           </div>
         </section>
 
         {/* Minimal Footer */}
-        <footer className="pb-20 text-center px-6">
-          <p className="text-duna-bege/10 text-[9px] uppercase tracking-[0.6em] font-sans">
-            Mentoria Acelera Clínicas • Gestão • Estratégia • Escala
+        <footer className="pb-24 text-center px-6">
+          <p className="text-luxury-text/30 text-[10px] uppercase tracking-[0.6em] font-bold font-sans">
+            Acelera Clínicas • Gestão • Estratégia • Escala • Lucro
           </p>
         </footer>
       </main>
